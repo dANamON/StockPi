@@ -43,7 +43,6 @@ def tickers():
 		change_2 = float((price2 / open_2) - 1)
 		o_ch2 = ("{:.2f}".format(price2 - open_2))
 		percent_change2 = ("{:.2f}".format((change_2 * 100)) + '%')
-		font = pygame.font.Font('Bebas-Regular.otf', 40, bold = True)
 		if change_2 == 0:
 			ourColor2 = white
 		elif change_2 > 0:
@@ -59,7 +58,6 @@ def tickers():
 		change_3 = float((price3 / open_3) - 1)
 		o_ch3 = ("{:.2f}".format(price3 - open_3))
 		percent_change3 = ("{:.2f}".format((change_3 * 100)) + '%')
-		font = pygame.font.Font('Bebas-Regular.otf', 40, bold = True)
 		if change_3 == 0:
 			ourColor3 = white
 		elif change_3 > 0:
