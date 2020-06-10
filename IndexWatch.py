@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 pygame.init()
 X = 480
 Y = 320
+# because this has no frame to quit, you will have to quit using CTRL+C in PowerShell
 display_surface = pygame.display.set_mode((X, Y), pygame.NOFRAME) 
 
 # colors
@@ -13,7 +14,6 @@ red = (255, 0, 0)
 green = (0 , 255, 0)
 black = (0, 0, 0)
 grey = (220, 220, 220)
-
 
 def tickers():
 	i = 1
@@ -64,7 +64,7 @@ def tickers():
 			ourColor3 = green
 		else:
 			ourColor3 = red
-		#adds the plus sign on positive number
+		#adds the plus sign before a positive number
 		if price-open_ > 0:
 			plus = '+'
 		else:
