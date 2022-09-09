@@ -19,15 +19,19 @@ def tickers():
 	i = 1
 	while True:
 		# ticker1
-		url = 'https://finance.yahoo.com/quote/%5EDJI?p=%5EDJI'
+		### shortened url
+		url = 'https://finance.yahoo.com/quote/%5EDJI'
 		response = requests.get(url)
 		soup = BeautifulSoup(response.text, 'lxml')
-		price = float(soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px)'})[0].find('span').text.replace(',',''))
-		open_ = float(soup.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].find('span').text.replace(',',''))
+		###updated price and open_ soup.find_all arguments, due to change in yahoo.com HTML code which where causing the 'out of range' error
+		price = float(soup.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('fin-streamer').text.replace(',',''))
+		open_ = float(soup.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].text.replace(',',''))
 		change_ = float((price / open_) - 1)
 		o_ch = ("{:.2f}".format(price - open_))
 		percent_change = ("{:.2f}".format((change_ * 100)) + '%')
-		font = pygame.font.Font('Bebas-Regular.otf', 40, bold = True)
+#       font = pygame.font.Font('Bebas-Regular.otf', 40, bold = True)
+###       changed Font to SysFont to avoid "FileNotFoundError: [Errno 2] No such file or directory: 'Bebas-Regular.otf' "
+		font =pygame.font.SysFont('arial', 40, bold=True)
 		if change_ == 0:
 			ourColor = white
 		elif change_ > 0:
@@ -35,11 +39,11 @@ def tickers():
 		else:
 			ourColor = red
 		# ticker2
-		url2 = 'https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC'
+		url2 = 'https://finance.yahoo.com/quote/%5EGSPC'
 		response2 = requests.get(url2)
 		soup2 = BeautifulSoup(response2.text, 'lxml')
-		price2 = float(soup2.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px)'})[0].find('span').text.replace(',',''))
-		open_2 = float(soup2.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].find('span').text.replace(',',''))
+		price2 = float(soup2.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('span').text.replace(',',''))
+		open_2 = float(soup2.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].text.replace(',',''))
 		change_2 = float((price2 / open_2) - 1)
 		o_ch2 = ("{:.2f}".format(price2 - open_2))
 		percent_change2 = ("{:.2f}".format((change_2 * 100)) + '%')
@@ -50,11 +54,11 @@ def tickers():
 		else:
 			ourColor2 = red
 		# ticker 3
-		url3 = 'https://finance.yahoo.com/quote/%5EIXIC/'
+		url3 = 'https://finance.yahoo.com/quote/%5EIXIC'
 		response3 = requests.get(url3)
 		soup3 = BeautifulSoup(response3.text, 'lxml')
-		price3 = float(soup3.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px)'})[0].find('span').text.replace(',',''))
-		open_3 = float(soup3.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].find('span').text.replace(',',''))
+		price3 = float(soup3.find_all('div', {'class':'My(6px) Pos(r) smartphone_Mt(6px) W(100%)'})[0].find('span').text.replace(',',''))
+		open_3 = float(soup3.find_all('td', {'class': 'Ta(end) Fw(600) Lh(14px)'})[0].text.replace(',',''))
 		change_3 = float((price3 / open_3) - 1)
 		o_ch3 = ("{:.2f}".format(price3 - open_3))
 		percent_change3 = ("{:.2f}".format((change_3 * 100)) + '%')
